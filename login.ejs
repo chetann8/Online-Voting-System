@@ -1,0 +1,64 @@
+<head>
+    <style>
+        body {
+            background: url('/images/backgroundimage.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+    
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -1;
+        }
+    </style>
+    <title>Login</title>
+</head>
+
+<body style="background-color: #fff; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; height: 100vh;">
+
+    <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center;">
+        
+        <h2 style="font-family: 'Poppins', sans-serif; color: #333; margin-bottom: 20px;">Login</h2>
+        
+        <form action="/auth/login" method="POST" style="display: flex; flex-direction: column; align-items: center;">
+            <input type="text" name="voter_id" placeholder="Voter ID" required 
+                pattern="[A-Z]{3}[0-9]{7}" title="Enter a valid Voter ID (e.g., ABC1234567)"
+                style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; transition: 0.3s;">
+            
+            <input type="password" name="password" placeholder="Password" required 
+                style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; transition: 0.3s;">
+            
+            <button type="submit" 
+                style="background: #007bff; color: #fff; padding: 12px 25px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s;">
+                Login
+            </button>
+        </form>
+
+        <p style="margin-top: 15px;">
+            Forgot password? <a href="/auth/reset-password" style="color: #007bff; text-decoration: none; font-weight: bold;">Reset here</a>
+        </p>
+    </div>
+
+    <style>
+        input:hover, input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+
+</body>

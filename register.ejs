@@ -1,0 +1,92 @@
+<head>
+    <style>
+        body {
+            background: url('/images/backgroundimage.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+    
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -1;
+        }
+    </style>
+    <title>Register</title>
+</head>
+
+<body style="background-color: #fff; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; height: 100vh;">
+
+    <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center;">
+   
+        <h2 style="font-family: 'Poppins', sans-serif; color: #333; margin-bottom: 20px;">Register</h2>
+ 
+        <form action="/auth/register" method="POST" onsubmit="return validateVoterID();" style="display: flex; flex-direction: column; align-items: center;">
+            <input type="text" name="voter_id" id="voter_id" placeholder="Voter ID (e.g., ABC1234567)" required 
+                style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; transition: 0.3s;">
+
+            <small id="voterIdError" style="color: red; display: none;">Invalid Voter ID format.</small>
+
+            <input type="password" name="password" placeholder="Password" required 
+                style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; transition: 0.3s;">
+
+            <label style="font-size: 16px; margin-bottom: 5px; color: #333; font-weight: bold;">Secret Question:</label>
+            <select name="secret_question" required 
+                style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background: #fff; cursor: pointer; transition: 0.3s;">
+                <option value="pet">What is your pet's name?</option>
+                <option value="color">What is your favorite color?</option>
+                <option value="birthplace">What city were you born in?</option>
+            </select>
+
+            <input type="text" name="secret_answer" placeholder="Your Answer" required 
+                style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; transition: 0.3s;">
+
+            <button type="submit" 
+                style="background: #007bff; color: #fff; padding: 12px 25px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s;">
+                Register
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function validateVoterID() {
+            var voterId = document.getElementById("voter_id").value.toUpperCase();
+            var voterIdPattern = /^[A-Z]{3}[0-9]{7}$/; // Example: ABC1234567
+
+            if (!voterIdPattern.test(voterId)) {
+                document.getElementById("voterIdError").style.display = "block";
+                return false;
+            } else {
+                document.getElementById("voterIdError").style.display = "none";
+            }
+            return true;
+        }
+    </script>
+
+    <style>
+        input:hover, input:focus, select:hover, select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        select {
+            appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center;
+            background-size: 16px;
+        }
+    </style>
+
+</body>

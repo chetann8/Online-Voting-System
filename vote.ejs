@@ -1,0 +1,68 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: url('/images/backgroundimage.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+    
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -1;
+        }
+    </style>
+    <title>Vote</title>
+</head>
+<body style="background-color: #fff; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; height: 100vh;">
+
+    <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center; width: 350px;">
+        
+        <h2 style="font-family: 'Poppins', sans-serif; color: #333; margin-bottom: 20px;">Vote</h2>
+
+        <% if (alreadyVoted) { %>
+            <p style="font-size: 18px; font-weight: bold; color: #dc3545; background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid #ccc;">
+                You have already voted. Check results.
+            </p>
+            <a href="/results" 
+                style="display: inline-block; background: #007bff; color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: bold; transition: 0.3s;">
+                View Results
+            </a>
+        <% } else { %>
+            <form action="/vote" method="POST">
+                <label style="font-size: 16px; font-weight: bold; color: #333; display: block; margin-bottom: 10px;">Select a Party:</label>
+                <select name="party" required 
+                    style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px;">
+                    <option value="BJP">BJP</option>
+                    <option value="Congress">Congress</option>
+                    <option value="AAP">AAP</option>
+                    <option value="NOTA">NOTA</option>
+                    <option value="Others">Others</option>
+                </select>
+                <button type="submit" 
+                    style="width: 100%; background: #007bff; color: white; padding: 12px; border-radius: 8px; border: none; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+                    Vote
+                </button>
+            </form>
+        <% } %>
+    </div>
+
+    <style>
+        button:hover, a:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+
+</body>
